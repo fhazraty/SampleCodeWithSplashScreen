@@ -45,7 +45,15 @@ namespace DataAccessLayer
 							{
 								if (!reader.IsDBNull(reader.GetOrdinal(prop.Name)))
 								{
-									prop.SetValue(instance, reader[prop.Name]);
+									object value = reader[prop.Name];
+
+									// بررسی اینکه آیا نوع پراپرتی یک enum است و تبدیل مقدار رشته‌ای به آن
+									if (prop.PropertyType.IsEnum && value is string)
+									{
+										value = Enum.Parse(prop.PropertyType, (string)value);
+									}
+
+									prop.SetValue(instance, value);
 								}
 							}
 							results.Add(instance);

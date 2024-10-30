@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using Microsoft.Extensions.Configuration;
 using Model;
 
 namespace SampleCodeWithSplashScreen
@@ -7,8 +8,19 @@ namespace SampleCodeWithSplashScreen
 	{
 		List<string> majorList = new List<string>();
 		List<Student> students = new List<Student>();
+		private string ConnectionString { get; set; }
+
 		public MainForm()
 		{
+			var builder = new ConfigurationBuilder()
+				.SetBasePath(Directory.GetCurrentDirectory())
+				.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+				.AddUserSecrets<MainForm>();
+
+			IConfiguration configuration = builder.Build();
+
+			ConnectionString = configuration["ConnectionStrings:DefaultConnection"];
+
 			InitializeComponent();
 			InitializeGenderCmb();
 			InitializeMajorCmb();
@@ -31,15 +43,12 @@ namespace SampleCodeWithSplashScreen
 			this.gridViewDisplay.DataSource = null;
 			this.gridViewDisplay.DataSource = students;
 
-			if (students.Count != 0)
-			{
-				this.gridViewDisplay.Columns[0].HeaderCell.Value = "نام";
-				this.gridViewDisplay.Columns[1].HeaderCell.Value = "نام خانوادگی";
-				this.gridViewDisplay.Columns[2].HeaderCell.Value = "سن";
-				this.gridViewDisplay.Columns[3].HeaderCell.Value = "شماره دانشجویی";
-				this.gridViewDisplay.Columns[4].HeaderCell.Value = "جنسیت";
-				this.gridViewDisplay.Columns[5].HeaderCell.Value = "رشته";
-			}
+			this.gridViewDisplay.Columns[0].HeaderCell.Value = "نام";
+			this.gridViewDisplay.Columns[1].HeaderCell.Value = "نام خانوادگی";
+			this.gridViewDisplay.Columns[2].HeaderCell.Value = "سن";
+			this.gridViewDisplay.Columns[3].HeaderCell.Value = "شماره دانشجویی";
+			this.gridViewDisplay.Columns[4].HeaderCell.Value = "جنسیت";
+			this.gridViewDisplay.Columns[5].HeaderCell.Value = "رشته";
 		}
 		private void clearInputs()
 		{
@@ -307,6 +316,18 @@ namespace SampleCodeWithSplashScreen
 				// غیرفعال کردن منوی کلیک راست با اختصاص دادن یک ContextMenuStrip خالی
 				((TextBox)sender).ContextMenuStrip = new ContextMenuStrip();
 			}
+		}
+
+		private void بازیابیToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			students = StudentHelper.LoadFromDatabase(ConnectionString);
+			refereshGrid();
+		}
+
+		private void ذخیرهToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			StudentHelper.SaveToDatabase(ConnectionString, students);
+			refereshGrid();
 		}
 	}
 }

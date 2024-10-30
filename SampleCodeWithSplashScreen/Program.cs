@@ -1,3 +1,7 @@
+//Install-Package Microsoft.Extensions.Configuration
+//Install-Package Microsoft.Extensions.Configuration.UserSecrets
+//Install-Package Microsoft.Extensions.Configuration.Json
+
 namespace SampleCodeWithSplashScreen
 {
     internal static class Program

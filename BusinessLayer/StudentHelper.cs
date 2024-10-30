@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using DataAccessLayer;
+using Model;
 using System.Text;
 using System.Text.Json;
 
@@ -72,6 +73,40 @@ namespace BusinessLayer
 			}
 
 			return students;
+		}
+
+		// ذخیره لیست دانشجویان در پایگاه داده
+		public static void SaveToDatabase(string connectionString, List<Student> students)
+		{
+			var sqlHelper = new SqlHelper<Student>(connectionString);
+
+			sqlHelper.DeleteDataFromDatabase("DELETE FROM [dbo].[Students];", null);
+
+			foreach (var student in students)
+			{
+				var query = "INSERT INTO Students (Firstname, Lastname, Age, StudentNo, Gender, Major) VALUES (@Firstname, @Lastname, @Age, @StudentNo, @Gender, @Major);";
+
+				var parameters = new Dictionary<string, object>
+				{
+					{"@Firstname", student.Firstname},
+					{"@Lastname", student.Lastname},
+					{"@Age", student.Age},
+					{"@StudentNo", student.StudentNo},
+					{"@Gender", student.Gender.ToString()},
+					{"@Major", student.Major}
+				};
+
+				sqlHelper.InsertDataIntoDatabase(query, parameters);
+			}
+		}
+
+		// بارگذاری لیست دانشجویان از پایگاه داده
+		public static List<Student> LoadFromDatabase(string connectionString)
+		{
+			var sqlHelper = new SqlHelper<Student>(connectionString);
+			var query = "SELECT Firstname, Lastname, Age, StudentNo, Gender, Major FROM Students";
+
+			return sqlHelper.ReadDataFromDatabase(query);
 		}
 	}
 }

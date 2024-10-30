@@ -29,6 +29,9 @@
 		private void InitializeComponent()
 		{
 			menuStrip1 = new MenuStrip();
+			پایگاهدادهToolStripMenuItem = new ToolStripMenuItem();
+			ذخیرهToolStripMenuItem = new ToolStripMenuItem();
+			بازیابیToolStripMenuItem = new ToolStripMenuItem();
 			fileToolStripMenuItem = new ToolStripMenuItem();
 			openToolStripMenuItem = new ToolStripMenuItem();
 			saveToolStripMenuItem = new ToolStripMenuItem();
@@ -66,12 +69,33 @@
 			// 
 			// menuStrip1
 			// 
-			menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, دربارهماToolStripMenuItem });
+			menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, پایگاهدادهToolStripMenuItem, دربارهماToolStripMenuItem });
 			menuStrip1.Location = new Point(0, 0);
 			menuStrip1.Name = "menuStrip1";
 			menuStrip1.Size = new Size(1022, 24);
 			menuStrip1.TabIndex = 6;
 			menuStrip1.Text = "menuStrip1";
+			// 
+			// پایگاهدادهToolStripMenuItem
+			// 
+			پایگاهدادهToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ذخیرهToolStripMenuItem, بازیابیToolStripMenuItem });
+			پایگاهدادهToolStripMenuItem.Name = "پایگاهدادهToolStripMenuItem";
+			پایگاهدادهToolStripMenuItem.Size = new Size(69, 20);
+			پایگاهدادهToolStripMenuItem.Text = "پایگاه داده";
+			// 
+			// ذخیرهToolStripMenuItem
+			// 
+			ذخیرهToolStripMenuItem.Name = "ذخیرهToolStripMenuItem";
+			ذخیرهToolStripMenuItem.Size = new Size(180, 22);
+			ذخیرهToolStripMenuItem.Text = "ذخیره";
+			ذخیرهToolStripMenuItem.Click += ذخیرهToolStripMenuItem_Click;
+			// 
+			// بازیابیToolStripMenuItem
+			// 
+			بازیابیToolStripMenuItem.Name = "بازیابیToolStripMenuItem";
+			بازیابیToolStripMenuItem.Size = new Size(180, 22);
+			بازیابیToolStripMenuItem.Text = "بازیابی";
+			بازیابیToolStripMenuItem.Click += بازیابیToolStripMenuItem_Click;
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -83,26 +107,26 @@
 			// openToolStripMenuItem
 			// 
 			openToolStripMenuItem.Name = "openToolStripMenuItem";
-			openToolStripMenuItem.Size = new Size(109, 22);
+			openToolStripMenuItem.Size = new Size(180, 22);
 			openToolStripMenuItem.Text = "بازکردن";
 			openToolStripMenuItem.Click += openToolStripMenuItem_Click;
 			// 
 			// saveToolStripMenuItem
 			// 
 			saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			saveToolStripMenuItem.Size = new Size(109, 22);
+			saveToolStripMenuItem.Size = new Size(180, 22);
 			saveToolStripMenuItem.Text = "ذخیره";
 			saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
 			// 
 			// toolStripMenuItem1
 			// 
 			toolStripMenuItem1.Name = "toolStripMenuItem1";
-			toolStripMenuItem1.Size = new Size(106, 6);
+			toolStripMenuItem1.Size = new Size(177, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			exitToolStripMenuItem.Size = new Size(109, 22);
+			exitToolStripMenuItem.Size = new Size(180, 22);
 			exitToolStripMenuItem.Text = "خروج";
 			exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
 			// 
@@ -387,5 +411,8 @@
 		private Button btnSave;
 		private Button btnEdit;
 		private Button btnDelete;
+		private ToolStripMenuItem پایگاهدادهToolStripMenuItem;
+		private ToolStripMenuItem ذخیرهToolStripMenuItem;
+		private ToolStripMenuItem بازیابیToolStripMenuItem;
 	}
 }
