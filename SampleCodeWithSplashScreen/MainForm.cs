@@ -1,4 +1,6 @@
-﻿namespace SampleCodeWithSplashScreen
+﻿using Model;
+
+namespace SampleCodeWithSplashScreen
 {
 	public partial class MainForm : Form
 	{

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Model;
+using System.Text;
 using System.Text.Json;
 
 namespace SampleCodeWithSplashScreen
