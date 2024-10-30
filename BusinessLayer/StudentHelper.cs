@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.Json;
 
-namespace SampleCodeWithSplashScreen
+namespace BusinessLayer
 {
 	public class StudentHelper
 	{

@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using BusinessLayer;
+using Model;
 
 namespace SampleCodeWithSplashScreen
 {
